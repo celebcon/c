@@ -1,0 +1,212 @@
+<html>
+
+<style>
+p.a {
+  white-space: pre;
+  color: white;
+}
+</style>
+
+
+<body style="background-color:black;">
+
+<canvas id="myCanvas" onload = 'move()' onclick = "clickfunc()" width="800" height="450" style=" padding-left: 0;
+    padding-right: 0;
+	
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 0px;
+    display: block;border:3px solid white;">
+</canvas>
+
+</body>
+
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "16px Arial";
+
+var canvasX = 0; 
+var canvasY = 0; 
+canvas.addEventListener("mousemove", function(e) { 
+    var cRect = canvas.getBoundingClientRect();              // Gets the CSS positions along with width/height
+    canvasX = Math.round(e.clientX - cRect.left);        // Subtract the 'left' of the canvas from the X/Y
+    canvasY = Math.round(e.clientY - cRect.top);         // positions to get make (0,0) the top left of the    
+});
+
+
+function sound(src) {
+ this.sound = document.createElement("audio");
+this.sound.src = src;
+this.sound.setAttribute("preload", "auto");
+this.sound.setAttribute("controls", "none");
+this.sound.style.display = "none";
+document.body.appendChild(this.sound);
+this.play = function(){
+this.sound.play();
+}
+this.stop = function(){
+this.sound.pause();
+}   
+}
+
+backtrack = new sound("sounds/backtrack.mp3");
+
+var statbutton = function(x,y,endx,endy,sceneNum,name,cost) {
+    this.x = x;
+    this.y = y;
+	this.endx = endx;
+	this.endy = endy;
+    this.w = this.endx - this.x;
+    this.h = this.endy - this.y;
+	this.sceneNum = sceneNum;
+	this.name = name; 
+	this.checking = false; 
+	this.verified = false;
+	this.purchased = false;
+	this.cost = cost; 
+};
+
+statbutton.prototype.draw = function() {
+    if (this.purchased == false){ctx.strokeStyle = "red";}
+    if (this.purchased == true){ctx.strokeStyle = "green";}
+	ctx.lineWidth = 5;
+    ctx.strokeRect(this.x - shiftX, this.y - shiftY, this.w, this.h);
+	
+	if (this.checking == true && this.purchased == false){
+		this.verified = true;
+		if (this.sceneNum != scene){this.verified = false;}
+		if (this.sceneNum != scene){this.verified = false;}
+		if (points - this.cost < 0){this.verified = false;}
+	}
+	
+	if (this.verified == true){
+	    if (this.purchased == false){
+		points = points - this.cost; 
+		printout += this.name + "\n\n";
+		}
+		this.purchased = true;
+	}
+	
+};
+
+
+var statbuttonArray = [];
+
+statbuttonArray.push(new statbutton(20, 345,333,400,1,"Kat Dennings: Chest Rest",2));
+
+statbuttonArray.push(new statbutton(20-800, 345,333-800,400,1,"Kat Dennings: Throat Goat",2));
+
+statbuttonArray.push(new statbutton(20, 345-400,333,400-400,1,"Kate Beckinsale: Chest Rest",2));
+
+statbuttonArray.push(new statbutton(20-800, 345-400,333-800,400-400,1,"Kate Beckinsale: Throat Goat",2));
+function clickfunc(){
+
+//Button Handling
+for(var i = 0; i < statbuttonArray.length ; i++) {
+			if (canvasX > statbuttonArray[i].x - shiftX && canvasX < statbuttonArray[i].x + statbuttonArray[i].w - shiftX){
+				if (canvasY > statbuttonArray[i].y - shiftY && canvasY < statbuttonArray[i].y + statbuttonArray[i].h - shiftY){
+						statbuttonArray[i].checking = true; 
+				}
+			
+			}
+}
+
+//Scene 1
+if (scene == 1){
+	if (canvasX > 20 && canvasX < 70 && canvasY > 100 && canvasY < 285){
+		shiftX = shiftX - 800;
+	}
+	
+	if (canvasX > 290 && canvasX < 340 && canvasY > 100 && canvasY < 285){
+		shiftX = shiftX + 800;
+	}
+	
+	if (canvasX > 655 && canvasX < 790 && canvasY > 10 && canvasY < 130){
+		shiftY = shiftY - 400;
+	}
+	
+	if (canvasX > 655 && canvasX < 790 && canvasY > 260 && canvasY < 400){
+		shiftY = shiftY + 400;
+	}
+
+
+}//END OF SCENE 1
+
+
+
+}
+
+var myVar = setInterval(move, 20);
+
+
+var printout = "";
+
+var shiftX = 0;
+var shiftY = 0;
+
+//IMPORTANT
+var scene = 1; 
+
+var points = 10; 
+//IMPORTANT
+
+function move() {
+
+//backtrack.play();
+
+//BG
+ctx.drawImage(coolbg, 0, 0,800,400);
+
+//Scene 1
+if (scene == 1){
+ctx.drawImage(chestrest, 0 - shiftX, 0,340,400);
+ctx.drawImage(throatgoat, -800 - shiftX, 0,340,400);
+
+ctx.drawImage(page10,340,0 - shiftY,460,400);
+ctx.drawImage(page9,340,-400 - shiftY,460,400);
+
+
+}//END OF SCENE 1
+
+
+//Prototypes
+for(var i = 0; i < statbuttonArray.length ; i++) {
+        statbuttonArray[i].draw();
+}
+
+
+//Bottom BG
+ctx.fillStyle = "black";
+ctx.fillRect(0,400, 800, 450);
+
+ctx.font = "20px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("X: " + canvasX,3,420);
+ctx.fillText("Y: " + canvasY,3,440);
+ctx.fillText("Points: " + points,100,440);
+ctx.fillText("Scene: " + scene,100,420);
+
+ctx.fillText("shiftX: " + shiftX,300,420);
+ctx.fillText("shiftY: " + shiftY,300,440);
+
+document.getElementById("demo").innerHTML = printout; 
+
+
+}//End of FUNCTION
+
+
+</script>
+
+<p class="a" id = "demo" value = ""></p>
+
+<img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
+
+<img id="chestrest"  style="display:none; visibility:hidden;" src="chestrest.png" alt="">
+<img id="throatgoat"  style="display:none; visibility:hidden;" src="throatgoat.png" alt="">
+
+<img id="page9"  style="display:none; visibility:hidden;" src="page9.png" alt="">
+<img id="page10"  style="display:none; visibility:hidden;" src="page10.png" alt="">
+
+</html> 
