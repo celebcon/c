@@ -103,7 +103,9 @@ statbutton.prototype.draw = function() {
 
 var statbuttonArray = [];
 
-var manualArray = ["Sydney Sweeney","Gemma Chan","Alison Brie","Barbara Palvin","Kat Dennings","Kate Beckinsale","Milana Vayntrub","Daniella Pineda","Maddie Hasson"];
+var manualArray = ["Brie Larson","Aubrey Plaza","Ianna Sarkis","Hilary Duff","Amanda Seyfried","Sydney Sweeney","Gemma Chan","Alison Brie",
+"Barbara Palvin","Kat Dennings","Kate Beckinsale","Milana Vayntrub",
+"Daniella Pineda","Maddie Hasson","Katrina Bowden","Victoria Justice","Emilia Clarke","Beth Bers","Jessica Chastain"];
 
 console.log("Length: " + manualArray.length);
 
@@ -117,7 +119,7 @@ mid = i - mid;
 
 mid = mid*400;  
 
-//console.log(mid);
+console.log(mid);
 
 statbuttonArray.push(new statbutton(20 + 2400, 345-mid,333 + 2400,400-mid,1,manualArray[i] + ": Gym Buddy",2));
 
@@ -237,7 +239,7 @@ var removeErrorGui = 1;
 var yArray = [];
 
 //IMPORTANT
-var scene = -20; 
+var scene = 1; 
 
 var points = 20; 
 //IMPORTANT
@@ -288,6 +290,13 @@ ctx.drawImage(naughtynurse, -2400 - shiftX, 0,340,400);
 
 if (shiftX < -2400){shiftX = -2400;} if (shiftX > 2400){shiftX = 2400;}
 
+
+
+ctx.drawImage(page19,340,3600 - shiftY,460,400);
+ctx.drawImage(page18,340,3200 - shiftY,460,400);
+ctx.drawImage(page17,340,2800 - shiftY,460,400);
+ctx.drawImage(page16,340,2400 - shiftY,460,400);
+ctx.drawImage(page15,340,2000 - shiftY,460,400);
 ctx.drawImage(page14,340,1600 - shiftY,460,400);
 ctx.drawImage(page13,340,1200 - shiftY,460,400);
 ctx.drawImage(page12,340,800 - shiftY,460,400);
@@ -297,6 +306,13 @@ ctx.drawImage(page9,340,-400 - shiftY,460,400);
 ctx.drawImage(page8,340,-800 - shiftY,460,400);
 ctx.drawImage(page7,340,-1200 - shiftY,460,400);
 ctx.drawImage(page6,340,-1600 - shiftY,460,400);
+ctx.drawImage(page5,340,-2000 - shiftY,460,400);
+ctx.drawImage(page4,340,-2400 - shiftY,460,400);
+ctx.drawImage(page3,340,-2800 - shiftY,460,400);
+ctx.drawImage(page2,340,-3200 - shiftY,460,400);
+ctx.drawImage(page1,340,-3600 - shiftY,460,400);
+
+if (shiftY < -3600){shiftY = -3600;}
 
 if (errordoing == 1 && removeErrorGui == 0){ctx.drawImage(alreadyAssigned,0,0,340,400);}
 }//END OF SCENE 1
@@ -354,6 +370,14 @@ document.getElementById("demo").innerHTML = printout;
 <img id="feetgoddess"  style="display:none; visibility:hidden;" src="feetgoddess.png" alt="">
 <img id="gymshark"  style="display:none; visibility:hidden;" src="gymshark.png" alt="">
 
+
+
+
+<img id="page1"  style="display:none; visibility:hidden;" src="page1.png" alt="">
+<img id="page2"  style="display:none; visibility:hidden;" src="page2.png" alt="">
+<img id="page3"  style="display:none; visibility:hidden;" src="page3.png" alt="">
+<img id="page4"  style="display:none; visibility:hidden;" src="page4.png" alt="">
+<img id="page5"  style="display:none; visibility:hidden;" src="page5.png" alt="">
 <img id="page6"  style="display:none; visibility:hidden;" src="page6.png" alt="">
 <img id="page7"  style="display:none; visibility:hidden;" src="page7.png" alt="">
 <img id="page8"  style="display:none; visibility:hidden;" src="page8.png" alt="">
@@ -363,5 +387,10 @@ document.getElementById("demo").innerHTML = printout;
 <img id="page12"  style="display:none; visibility:hidden;" src="page12.png" alt="">
 <img id="page13"  style="display:none; visibility:hidden;" src="page13.png" alt="">
 <img id="page14"  style="display:none; visibility:hidden;" src="page14.png" alt="">
-
+<img id="page15"  style="display:none; visibility:hidden;" src="page15.png" alt="">
+<img id="page16"  style="display:none; visibility:hidden;" src="page16.png" alt="">
+<img id="page17"  style="display:none; visibility:hidden;" src="page17.png" alt="">
+<img id="page18"  style="display:none; visibility:hidden;" src="page18.png" alt="">
+<img id="page19"  style="display:none; visibility:hidden;" src="page19.png" alt="">
+<img id="page20"  style="display:none; visibility:hidden;" src="page20.png" alt="">
 </html> 
