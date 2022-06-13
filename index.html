@@ -54,6 +54,9 @@ this.sound.pause();
 assignedSound = new sound("assignedSound.mp3");
 tabSound = new sound("tabSound.mp3");
 
+thunderSound = new sound("thunderSound.mp3");
+shoreSound = new sound("shoreSound.mp3");
+
 var statbutton = function(x,y,endx,endy,sceneNum,name,cost) {
     this.x = x;
     this.y = y;
@@ -77,7 +80,7 @@ statbutton.prototype.draw = function() {
     if (this.purchased == true){ctx.strokeStyle = "green";}
 	
 	ctx.lineWidth = 5;
-    ctx.strokeRect(this.x - shiftX, this.y - shiftY, this.w, this.h);
+    if (scene == this.sceneNum){ctx.strokeRect(this.x - shiftX, this.y - shiftY, this.w, this.h);}
 	
 	if (this.checking == true && this.purchased == false){
 		this.verified = true;
@@ -114,7 +117,7 @@ mid = i - mid;
 
 mid = mid*400;  
 
-console.log(mid);
+//console.log(mid);
 
 statbuttonArray.push(new statbutton(20 + 2400, 345-mid,333 + 2400,400-mid,1,manualArray[i] + ": Gym Buddy",2));
 
@@ -132,6 +135,7 @@ statbuttonArray.push(new statbutton(20-2400, 345-mid,333-2400,400-mid,1,manualAr
 
 }
 
+var errordoing = 0;
 
 function clickfunc(){
 
@@ -139,7 +143,18 @@ function clickfunc(){
 for(var i = 0; i < statbuttonArray.length ; i++) {
 			if (canvasX > statbuttonArray[i].x - shiftX && canvasX < statbuttonArray[i].x + statbuttonArray[i].w - shiftX){
 				if (canvasY > statbuttonArray[i].y - shiftY && canvasY < statbuttonArray[i].y + statbuttonArray[i].h - shiftY){
-						statbuttonArray[i].checking = true; 
+						errordoing = 0;
+						//if (shiftY == yArray[0]){errordoing = 1;}
+					
+						for(var z = 0; z < yArray.length ; z++) {
+						    if (shiftY == yArray[z]){errordoing = 1; removeErrorGui = 0;}
+							
+						}
+						
+						if (errordoing == 0){statbuttonArray[i].checking = true;}
+						
+						yArray.push(shiftY);
+						console.log(shiftY);
 				}
 			
 			}
@@ -160,11 +175,13 @@ if (scene == 1){
 	if (canvasX > 655 && canvasX < 790 && canvasY > 10 && canvasY < 130){
 		shiftY = shiftY - 400;
 		tabSound.play();
+		removeErrorGui = 1;
 	}
 	
 	if (canvasX > 655 && canvasX < 790 && canvasY > 260 && canvasY < 400){
 		shiftY = shiftY + 400;
 		tabSound.play();
+		removeErrorGui = 1;
 	}
 
 
@@ -172,7 +189,22 @@ if (scene == 1){
 
 
 
+if (scene == -19){
+	if (canvasX > 180 && canvasX < 620 && canvasY > 310 && canvasY < 400){scene = -18;}
+	tabSound.play();
+	thunderSound.stop();
+	shoreSound.play();
 }
+
+if (scene == -20){
+	if (canvasX > 200 && canvasX < 580 && canvasY > 260 && canvasY < 340){scene = -19;}
+	tabSound.play();
+	thunderSound.play();
+}
+
+
+
+}//END OF CLICKFUNC
 
 var myVar = setInterval(move, 20);
 
@@ -184,19 +216,35 @@ var shiftY = 0;
 
 var animx = 0;
 
+var removeErrorGui = 1;
+
+var yArray = [];
+
 //IMPORTANT
-var scene = 1; 
+var scene = -20; 
 
 var points = 20; 
 //IMPORTANT
 
 function move() {
-
 //BG
 ctx.drawImage(coolbg,0,0,800,400);
 ctx.drawImage(coolbg,0,0,800,400);
 
 //Scene 1
+
+if (scene == -20){
+ctx.drawImage(intro, 0, 0,800,450);
+}
+
+if (scene == -19){
+ctx.drawImage(fishing, 0, 0,800,450);
+}
+
+if (scene == -18){
+ctx.drawImage(shore, 0, 0,800,450);
+}
+
 if (scene == 1){
 ctx.drawImage(gymshark, 2400 - shiftX, 0,340,400);
 ctx.drawImage(feetgoddess, 1600 - shiftX, 0,340,400);
@@ -218,7 +266,7 @@ ctx.drawImage(page8,340,-800 - shiftY,460,400);
 ctx.drawImage(page7,340,-1200 - shiftY,460,400);
 ctx.drawImage(page6,340,-1600 - shiftY,460,400);
 
-
+if (errordoing == 1 && removeErrorGui == 0){ctx.drawImage(alreadyAssigned,0,0,340,400);}
 }//END OF SCENE 1
 
 
@@ -230,7 +278,7 @@ for(var i = 0; i < statbuttonArray.length ; i++) {
 
 //Bottom BG
 ctx.fillStyle = "black";
-ctx.fillRect(0,400, 800, 450);
+if (scene == 1){ctx.fillRect(0,400, 800, 450);}
 
 ctx.font = "20px Arial";
 ctx.fillStyle = "white";
@@ -253,8 +301,14 @@ document.getElementById("demo").innerHTML = printout;
 
 <p class="a" id = "demo" value = ""></p>
 
+<img id="intro"  style="display:none; visibility:hidden;" src="intro.png" alt="">
+<img id="fishing"  style="display:none; visibility:hidden;" src="fishing.png" alt="">
+<img id="shore"  style="display:none; visibility:hidden;" src="shore.png" alt="">
+
 <img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
 <img id="assigned"  style="display:none; visibility:hidden;" src="assigned.png" alt="">
+
+<img id="alreadyAssigned"  style="display:none; visibility:hidden;" src="alreadyAssigned.png" alt="">
 
 <img id="chestrest"  style="display:none; visibility:hidden;" src="chestrest.png" alt="">
 <img id="throatgoat"  style="display:none; visibility:hidden;" src="throatgoat.png" alt="">
