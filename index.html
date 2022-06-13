@@ -51,7 +51,8 @@ this.sound.pause();
 }   
 }
 
-backtrack = new sound("sounds/backtrack.mp3");
+assignedSound = new sound("assignedSound.mp3");
+tabSound = new sound("tabSound.mp3");
 
 var statbutton = function(x,y,endx,endy,sceneNum,name,cost) {
     this.x = x;
@@ -89,6 +90,7 @@ statbutton.prototype.draw = function() {
 	    if (this.purchased == false){
 		points = points - this.cost; 
 		printout += this.name + "\n\n";
+		assignedSound.play();
 		}
 		this.purchased = true;
 	}
@@ -98,7 +100,7 @@ statbutton.prototype.draw = function() {
 
 var statbuttonArray = [];
 
-var manualArray = ["Gemma Chan","Alison Brie","Barbara Palvin","Kat Dennings","Kate Beckinsale","Milana Vayntrub","Daniella Pineda"];
+var manualArray = ["Sydney Sweeney","Gemma Chan","Alison Brie","Barbara Palvin","Kat Dennings","Kate Beckinsale","Milana Vayntrub","Daniella Pineda","Maddie Hasson"];
 
 console.log("Length: " + manualArray.length);
 
@@ -147,18 +149,22 @@ for(var i = 0; i < statbuttonArray.length ; i++) {
 if (scene == 1){
 	if (canvasX > 20 && canvasX < 70 && canvasY > 100 && canvasY < 285){
 		shiftX = shiftX - 800;
+		tabSound.play();
 	}
 	
 	if (canvasX > 290 && canvasX < 340 && canvasY > 100 && canvasY < 285){
 		shiftX = shiftX + 800;
+		tabSound.play();
 	}
 	
 	if (canvasX > 655 && canvasX < 790 && canvasY > 10 && canvasY < 130){
 		shiftY = shiftY - 400;
+		tabSound.play();
 	}
 	
 	if (canvasX > 655 && canvasX < 790 && canvasY > 260 && canvasY < 400){
 		shiftY = shiftY + 400;
+		tabSound.play();
 	}
 
 
@@ -186,8 +192,6 @@ var points = 20;
 
 function move() {
 
-//backtrack.play();
-
 //BG
 ctx.drawImage(coolbg,0,0,800,400);
 ctx.drawImage(coolbg,0,0,800,400);
@@ -204,7 +208,7 @@ ctx.drawImage(naughtynurse, -2400 - shiftX, 0,340,400);
 
 if (shiftX < -2400){shiftX = -2400;} if (shiftX > 2400){shiftX = 2400;}
 
-
+ctx.drawImage(page14,340,1600 - shiftY,460,400);
 ctx.drawImage(page13,340,1200 - shiftY,460,400);
 ctx.drawImage(page12,340,800 - shiftY,460,400);
 ctx.drawImage(page11,340,400 - shiftY,460,400);
@@ -212,6 +216,7 @@ ctx.drawImage(page10,340,0 - shiftY,460,400);
 ctx.drawImage(page9,340,-400 - shiftY,460,400);
 ctx.drawImage(page8,340,-800 - shiftY,460,400);
 ctx.drawImage(page7,340,-1200 - shiftY,460,400);
+ctx.drawImage(page6,340,-1600 - shiftY,460,400);
 
 
 }//END OF SCENE 1
@@ -259,6 +264,7 @@ document.getElementById("demo").innerHTML = printout;
 <img id="feetgoddess"  style="display:none; visibility:hidden;" src="feetgoddess.png" alt="">
 <img id="gymshark"  style="display:none; visibility:hidden;" src="gymshark.png" alt="">
 
+<img id="page6"  style="display:none; visibility:hidden;" src="page6.png" alt="">
 <img id="page7"  style="display:none; visibility:hidden;" src="page7.png" alt="">
 <img id="page8"  style="display:none; visibility:hidden;" src="page8.png" alt="">
 <img id="page9"  style="display:none; visibility:hidden;" src="page9.png" alt="">
@@ -266,5 +272,6 @@ document.getElementById("demo").innerHTML = printout;
 <img id="page11"  style="display:none; visibility:hidden;" src="page11.png" alt="">
 <img id="page12"  style="display:none; visibility:hidden;" src="page12.png" alt="">
 <img id="page13"  style="display:none; visibility:hidden;" src="page13.png" alt="">
+<img id="page14"  style="display:none; visibility:hidden;" src="page14.png" alt="">
 
 </html> 
