@@ -69,8 +69,12 @@ var statbutton = function(x,y,endx,endy,sceneNum,name,cost) {
 };
 
 statbutton.prototype.draw = function() {
+	
+	if (this.purchased == true){ctx.drawImage(assigned, this.x - 23 - shiftX, this.y - 345 - shiftY,340,400);}
+
     if (this.purchased == false){ctx.strokeStyle = "red";}
     if (this.purchased == true){ctx.strokeStyle = "green";}
+	
 	ctx.lineWidth = 5;
     ctx.strokeRect(this.x - shiftX, this.y - shiftY, this.w, this.h);
 	
@@ -94,13 +98,31 @@ statbutton.prototype.draw = function() {
 
 var statbuttonArray = [];
 
-statbuttonArray.push(new statbutton(20, 345,333,400,1,"Kat Dennings: Chest Rest",2));
+var manualArray = ["Gemma Chan","Alison Brie","Barbara Palvin","Kat Dennings","Kate Beckinsale","Milana Vayntrub","Daniella Pineda"];
 
-statbuttonArray.push(new statbutton(20-800, 345,333-800,400,1,"Kat Dennings: Throat Goat",2));
+console.log("Length: " + manualArray.length);
 
-statbuttonArray.push(new statbutton(20, 345-400,333,400-400,1,"Kate Beckinsale: Chest Rest",2));
+var mid = 0;
 
-statbuttonArray.push(new statbutton(20-800, 345-400,333-800,400-400,1,"Kate Beckinsale: Throat Goat",2));
+for (var i = 0; i < manualArray.length; i++){
+
+mid = (manualArray.length - 1)/2
+
+mid = i - mid; 
+
+mid = mid*400;  
+
+console.log(mid);
+statbuttonArray.push(new statbutton(20, 345-mid,333,400-mid,1,manualArray[i] + ": Chest Rest",2));
+}
+
+//statbuttonArray.push(new statbutton(20, 345,333,400,1,"Kat Dennings: Chest Rest",2));
+
+//statbuttonArray.push(new statbutton(20-800, 345,333-800,400,1,"Kat Dennings: Throat Goat",2));
+
+//statbuttonArray.push(new statbutton(20, 345-400,333,400-400,1,"Kate Beckinsale: Chest Rest",2));
+
+//statbuttonArray.push(new statbutton(20-800, 345-400,333-800,400-400,1,"Kate Beckinsale: Throat Goat",2));
 function clickfunc(){
 
 //Button Handling
@@ -146,10 +168,12 @@ var printout = "";
 var shiftX = 0;
 var shiftY = 0;
 
+var animx = 0;
+
 //IMPORTANT
 var scene = 1; 
 
-var points = 10; 
+var points = 20; 
 //IMPORTANT
 
 function move() {
@@ -157,15 +181,29 @@ function move() {
 //backtrack.play();
 
 //BG
-ctx.drawImage(coolbg, 0, 0,800,400);
+ctx.drawImage(coolbg,0,0,800,400);
+ctx.drawImage(coolbg,0,0,800,400);
 
 //Scene 1
 if (scene == 1){
+ctx.drawImage(gymshark, 2400 - shiftX, 0,340,400);
+ctx.drawImage(feetgoddess, 1600 - shiftX, 0,340,400);
+ctx.drawImage(domme, 800 - shiftX, 0,340,400);
 ctx.drawImage(chestrest, 0 - shiftX, 0,340,400);
 ctx.drawImage(throatgoat, -800 - shiftX, 0,340,400);
+ctx.drawImage(submissiveslut, -1600 - shiftX, 0,340,400);
+ctx.drawImage(naughtynurse, -2400 - shiftX, 0,340,400);
 
+if (shiftX < -2400){shiftX = -2400;} if (shiftX > 2400){shiftX = 2400;}
+
+
+ctx.drawImage(page13,340,1200 - shiftY,460,400);
+ctx.drawImage(page12,340,800 - shiftY,460,400);
+ctx.drawImage(page11,340,400 - shiftY,460,400);
 ctx.drawImage(page10,340,0 - shiftY,460,400);
 ctx.drawImage(page9,340,-400 - shiftY,460,400);
+ctx.drawImage(page8,340,-800 - shiftY,460,400);
+ctx.drawImage(page7,340,-1200 - shiftY,460,400);
 
 
 }//END OF SCENE 1
@@ -191,6 +229,7 @@ ctx.fillText("Scene: " + scene,100,420);
 ctx.fillText("shiftX: " + shiftX,300,420);
 ctx.fillText("shiftY: " + shiftY,300,440);
 
+
 document.getElementById("demo").innerHTML = printout; 
 
 
@@ -202,11 +241,22 @@ document.getElementById("demo").innerHTML = printout;
 <p class="a" id = "demo" value = ""></p>
 
 <img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
+<img id="assigned"  style="display:none; visibility:hidden;" src="assigned.png" alt="">
 
 <img id="chestrest"  style="display:none; visibility:hidden;" src="chestrest.png" alt="">
 <img id="throatgoat"  style="display:none; visibility:hidden;" src="throatgoat.png" alt="">
+<img id="naughtynurse"  style="display:none; visibility:hidden;" src="naughtynurse.png" alt="">
+<img id="domme"  style="display:none; visibility:hidden;" src="domme.png" alt="">
+<img id="submissiveslut"  style="display:none; visibility:hidden;" src="submissiveslut.png" alt="">
+<img id="feetgoddess"  style="display:none; visibility:hidden;" src="feetgoddess.png" alt="">
+<img id="gymshark"  style="display:none; visibility:hidden;" src="gymshark.png" alt="">
 
+<img id="page7"  style="display:none; visibility:hidden;" src="page7.png" alt="">
+<img id="page8"  style="display:none; visibility:hidden;" src="page8.png" alt="">
 <img id="page9"  style="display:none; visibility:hidden;" src="page9.png" alt="">
 <img id="page10"  style="display:none; visibility:hidden;" src="page10.png" alt="">
+<img id="page11"  style="display:none; visibility:hidden;" src="page11.png" alt="">
+<img id="page12"  style="display:none; visibility:hidden;" src="page12.png" alt="">
+<img id="page13"  style="display:none; visibility:hidden;" src="page13.png" alt="">
 
 </html> 
