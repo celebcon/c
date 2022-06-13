@@ -188,18 +188,34 @@ if (scene == 1){
 }//END OF SCENE 1
 
 
+if (scene == -14){
+	if (canvasX > 160 && canvasX < 637 && canvasY > 243 && canvasY < 317){scene = 1; tabSound.play();}
+}
+
+if (scene == -15){
+	if (canvasX > 200 && canvasX < 600 && canvasY > 300 && canvasY < 500){scene = -14; tabSound.play();}
+}
+
+if (scene == -16){
+	if (canvasX > 200 && canvasX < 600 && canvasY > 300 && canvasY < 500){scene = -15; tabSound.play();}
+}
+
+if (scene == -17){
+	if (canvasX > 200 && canvasX < 600 && canvasY > 380 && canvasY < 500){scene = -16; tabSound.play();}
+}
+
+if (scene == -18){
+	if (canvasX > 350 && canvasX < 790 && canvasY > 380 && canvasY < 500){scene = -17; tabSound.play();}
+	shoreSound.stop();
+}
 
 if (scene == -19){
-	if (canvasX > 180 && canvasX < 620 && canvasY > 310 && canvasY < 400){scene = -18;}
-	tabSound.play();
+	if (canvasX > 180 && canvasX < 620 && canvasY > 310 && canvasY < 400){scene = -18; shoreSound.play(); tabSound.play();}
 	thunderSound.stop();
-	shoreSound.play();
 }
 
 if (scene == -20){
-	if (canvasX > 200 && canvasX < 580 && canvasY > 260 && canvasY < 340){scene = -19;}
-	tabSound.play();
-	thunderSound.play();
+	if (canvasX > 200 && canvasX < 580 && canvasY > 260 && canvasY < 340){scene = -19; tabSound.play(); thunderSound.play();}
 }
 
 
@@ -243,6 +259,22 @@ ctx.drawImage(fishing, 0, 0,800,450);
 
 if (scene == -18){
 ctx.drawImage(shore, 0, 0,800,450);
+}
+
+if (scene == -17){
+ctx.drawImage(pilot, 0, 0,800,450);
+}
+
+if (scene == -16){
+ctx.drawImage(whyno, 0, 0,800,450);
+}
+
+if (scene == -15){
+ctx.drawImage(panties, 0, 0,800,450);
+}
+
+if (scene == -14){
+ctx.drawImage(introgui, 0, 0,800,450);
 }
 
 if (scene == 1){
@@ -304,6 +336,10 @@ document.getElementById("demo").innerHTML = printout;
 <img id="intro"  style="display:none; visibility:hidden;" src="intro.png" alt="">
 <img id="fishing"  style="display:none; visibility:hidden;" src="fishing.png" alt="">
 <img id="shore"  style="display:none; visibility:hidden;" src="shore.png" alt="">
+<img id="pilot"  style="display:none; visibility:hidden;" src="pilot.png" alt="">
+<img id="whyno"  style="display:none; visibility:hidden;" src="whyno.png" alt="">
+<img id="panties"  style="display:none; visibility:hidden;" src="panties.png" alt="">
+<img id="introgui"  style="display:none; visibility:hidden;" src="introgui.png" alt="">
 
 <img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
 <img id="assigned"  style="display:none; visibility:hidden;" src="assigned.png" alt="">
