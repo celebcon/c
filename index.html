@@ -190,10 +190,72 @@ if (scene == 1){
 }//END OF SCENE 1
 
 
+if (scene == 7){
+	if (canvasX > 60 && canvasX < 380 && canvasY > 90 && canvasY < 230){
+	energy -= 3; tabSound.play(); printout += "\n\nPing Pong: If she fails to return your serve, fuck her against the table for 5 min!"; scene = 8;
+	}
+	
+	if (canvasX > 60 && canvasX < 380 && canvasY > 240 && canvasY < 380){
+	energy -= 1; tabSound.play(); printout += "\n\nPing Pong: If she hits the net, she must give you a handjob for 3 min!"; scene = 8;
+	}
+	
+	
+	if (canvasX > 400 && canvasX < 720 && canvasY > 90 && canvasY < 230){
+	energy -= 2; tabSound.play(); printout += "\n\nPing Pong: If a rally is greater than 20 shots: she must give you a naked lap dance!"; scene = 8;
+	}
+	
+	if (canvasX > 400 && canvasX < 710 && canvasY > 240 && canvasY < 380){
+	energy -= 1; tabSound.play(); printout += "\n\nPing Pong: If she misses a serve, she must kiss the tip of your penis!"; scene = 8;
+	}
+	
+}
+
+if (scene == 6){
+	if (canvasX > 230 && canvasX < 540 && canvasY > 80 && canvasY < 190){
+	energy -= 3; tabSound.play(); printout += "\n\nDarts: If she hits a bullseye, she must ride you for 5 min!"; scene = 7;
+	}
+	
+	if (canvasX > 230 && canvasX < 540 && canvasY > 200 && canvasY < 360){
+	energy -= 2; tabSound.play(); printout += "\n\nDarts: If she lands a dart on the outer ring, she must jerk you off with her tits for 5 min!"; scene = 7;
+	}
+	
+	if (canvasX > 560 && canvasX < 790 && canvasY > 130 && canvasY < 310){
+	energy -= 1; tabSound.play(); printout += "\n\nDarts: If she misses the whole board, she must give you a handjob for 3 min!"; scene = 7;
+	}
+	
+}
+
+if (scene == 5){
+if (canvasX > 75 && canvasX < 730 && canvasY > 300 && canvasY < 430){scene = 6; tabSound.play();}
+}
+
+
+if (scene == 4){
+	if (canvasX > 75 && canvasX < 400 && canvasY > 90 && canvasY < 200){
+	energy -= 2; tabSound.play(); printout += "\n\nVolleyball: If she hits the net, swallow the whole thing!"; scene = 5;
+	}
+	
+	if (canvasX > 400 && canvasX < 730 && canvasY > 100 && canvasY < 250){
+	energy -= 1; tabSound.play(); printout += "\n\nVolleyball: If she gets hit by an overhead, naked lap dance!"; scene = 5;
+	}
+
+    if (canvasX > 60 && canvasX < 390 && canvasY > 230 && canvasY < 360){
+	energy -= 3; tabSound.play(); printout += "\n\nVolleyball: Losing team is tied up and used by the winning team!"; scene = 5;
+	}
+	
+	if (canvasX > 400 && canvasX < 750 && canvasY > 250 && canvasY < 400){
+	energy -= 2; tabSound.play(); printout += "\n\nVolleyball: If she hits the ball out of bounds, fuck her thighs!";  scene = 5;
+	}
+}
+
+
+if (scene == 3){
+	if (canvasX > 340 && canvasX < 690 && canvasY > 390 && canvasY < 440){scene = 4; tabSound.play();}
+}
+
 if (scene == 2){
 	if (canvasX > 160 && canvasX < 650 && canvasY > 230 && canvasY < 360){scene = 3; tabSound.play();}
 }
-
 
 if (scene == -14){
 	if (canvasX > 160 && canvasX < 637 && canvasY > 243 && canvasY < 317){scene = 1; tabSound.play();}
@@ -244,9 +306,11 @@ var removeErrorGui = 1;
 var yArray = [];
 
 //IMPORTANT
-var scene = -20; 
+var scene = 3; 
 
 var points = 10; 
+
+var energy = 10;
 //IMPORTANT
 
 function move() {
@@ -333,6 +397,27 @@ if (scene == 3){
 ctx.drawImage(knock, 0, 0,800,450);
 }
 
+if (scene == 4){
+ctx.drawImage(volleyball, 0, 0,800,400);
+}
+
+
+if (scene == 5){
+ctx.drawImage(aftervolley, 0, 0,800,450);
+}
+
+if (scene == 6){
+ctx.drawImage(darts, 0, 0,800,400);
+}
+
+if (scene == 7){
+ctx.drawImage(pingpong, 0, 0,800,400);
+}
+
+if (scene == 8){
+ctx.drawImage(foosball, 0, 0,800,400);
+}
+
 //Prototypes
 for(var i = 0; i < statbuttonArray.length ; i++) {
         statbuttonArray[i].draw();
@@ -349,6 +434,15 @@ ctx.fillStyle = "white";
 ctx.fillText("Points: " + points,250,440);
 }
 
+if (scene == 4 || scene == 6 || scene == 7 || scene == 8){
+ctx.fillStyle = "black";
+ctx.fillRect(0,400, 800, 450);
+
+ctx.font = "bold 48px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("Energy: " + energy,250,440);
+}
+
 
 var debugInfo = 1;
 if (debugInfo == 1){
@@ -356,7 +450,8 @@ ctx.font = "20px Arial";
 ctx.fillStyle = "white";
 ctx.fillText("X: " + canvasX,3,420);
 ctx.fillText("Y: " + canvasY,3,440);
-ctx.fillText("Points: " + points,100,440);
+if (scene < 4){ctx.fillText("Points: " + points,100,440);}
+if (scene >= 4){ctx.fillText("Energy: " + energy,100,440);}
 ctx.fillText("Scene: " + scene,100,420);
 
 ctx.fillText("shiftX: " + shiftX,600,420);
@@ -384,6 +479,15 @@ document.getElementById("demo").innerHTML = printout;
 
 <img id="knock"  style="display:none; visibility:hidden;" src="knock.png" alt="">
 
+<img id="volleyball"  style="display:none; visibility:hidden;" src="volleyball.png" alt="">
+
+<img id="aftervolley"  style="display:none; visibility:hidden;" src="aftervolley.png" alt="">
+
+<img id="darts"  style="display:none; visibility:hidden;" src="darts.png" alt="">
+
+<img id="pingpong"  style="display:none; visibility:hidden;" src="pingpong.png" alt="">
+
+<img id="foosball"  style="display:none; visibility:hidden;" src="foosball.png" alt="">
 
 <img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
 <img id="assigned"  style="display:none; visibility:hidden;" src="assigned.png" alt="">
