@@ -190,6 +190,48 @@ if (scene == 1){
 }//END OF SCENE 1
 
 
+if (scene == 11){
+	if (canvasX > 520 && canvasX < 750 && canvasY > 130 && canvasY < 175){
+	energy -= 1; tabSound.play(); printout += "\n\nPool: Emilia Clarke blows you underwater."; scene = 12;
+	}
+	
+	if (canvasX > 520 && canvasX < 750 && canvasY > 190 && canvasY < 240){
+	energy -= 2; tabSound.play(); printout += "\n\nPool: Fuck Emilia Clarke"; scene = 12;
+	}
+	
+	if (canvasX > 520 && canvasX < 750 && canvasY > 240 && canvasY < 290){
+	energy -= 3; tabSound.play(); printout += "\n\nPool: Emilia Clarke and Barbara Palvin take turns riding you"; scene = 12;
+	}
+}
+
+if (scene == 10){
+	if (canvasX > 70 && canvasX < 730 && canvasY > 300 && canvasY < 444){scene = 11; tabSound.play();}
+}
+	
+if (scene == 9){
+	if (canvasX > 10 && canvasX < 330 && canvasY > 90 && canvasY < 234){
+	energy -= 3; tabSound.play(); printout += "\n\nCornhole: If you make two bags in a row, she must suck your dick until you cum!"; scene = 10;
+	}
+	
+	if (canvasX > 470 && canvasX < 790 && canvasY > 60 && canvasY < 200){
+	energy -= 2; tabSound.play(); printout += "\n\nCornhole: If you make 10 bags before she does, she must ride you for 5 min"; scene = 10;
+	}
+	
+	if (canvasX > 470 && canvasX < 790 && canvasY > 230 && canvasY < 400){
+	energy -= 1; tabSound.play(); printout += "\n\nCornhole: If she lands the bag on the board but it does not go inside, she must jack you off with her feet"; scene = 10;
+	}
+}
+
+if (scene == 8){
+	if (canvasX > 470 && canvasX < 800 && canvasY > 80 && canvasY < 214){
+	energy -= 2; tabSound.play(); printout += "\n\nFoosball: If you score against her, bend her over the table and fuck her for 5 min!"; scene = 9;
+	}
+	if (canvasX > 470 && canvasX < 800 && canvasY > 230 && canvasY < 380){
+	energy -= 3; tabSound.play(); printout += "\n\nFoosball: If you score 10 goals before she does, tie her up and use her for 20 minutes"; scene = 9;
+	}
+	
+}
+
 if (scene == 7){
 	if (canvasX > 60 && canvasX < 380 && canvasY > 90 && canvasY < 230){
 	energy -= 3; tabSound.play(); printout += "\n\nPing Pong: If she fails to return your serve, fuck her against the table for 5 min!"; scene = 8;
@@ -306,7 +348,7 @@ var removeErrorGui = 1;
 var yArray = [];
 
 //IMPORTANT
-var scene = 3; 
+var scene = 4; 
 
 var points = 10; 
 
@@ -418,6 +460,20 @@ if (scene == 8){
 ctx.drawImage(foosball, 0, 0,800,400);
 }
 
+
+if (scene == 9){
+ctx.drawImage(cornhole, 0, 0,800,400);
+}
+
+if (scene == 10){
+ctx.drawImage(afterhole, 0, 0,800,450);
+}
+
+if (scene == 11){
+ctx.drawImage(pool, 0, 0,800,400);
+}
+
+
 //Prototypes
 for(var i = 0; i < statbuttonArray.length ; i++) {
         statbuttonArray[i].draw();
@@ -434,7 +490,7 @@ ctx.fillStyle = "white";
 ctx.fillText("Points: " + points,250,440);
 }
 
-if (scene == 4 || scene == 6 || scene == 7 || scene == 8){
+if (scene == 4 || scene == 6 || scene == 7 || scene == 8 || scene == 9 || scene == 11){
 ctx.fillStyle = "black";
 ctx.fillRect(0,400, 800, 450);
 
@@ -488,6 +544,13 @@ document.getElementById("demo").innerHTML = printout;
 <img id="pingpong"  style="display:none; visibility:hidden;" src="pingpong.png" alt="">
 
 <img id="foosball"  style="display:none; visibility:hidden;" src="foosball.png" alt="">
+
+<img id="cornhole"  style="display:none; visibility:hidden;" src="cornhole.png" alt="">
+
+<img id="afterhole"  style="display:none; visibility:hidden;" src="aftercornhole.png" alt="">
+
+<img id="pool"  style="display:none; visibility:hidden;" src="pool.png" alt="">
+
 
 <img id="coolbg"  style="display:none; visibility:hidden;" src="coolbg.png" alt="">
 <img id="assigned"  style="display:none; visibility:hidden;" src="assigned.png" alt="">
